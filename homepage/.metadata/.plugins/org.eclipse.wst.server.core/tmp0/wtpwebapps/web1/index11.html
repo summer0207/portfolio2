@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM형태 및 NODE형태의 HTML 코드 생성법</title>
+<!-- innerHTML, append -->
+</head>
+<body>
+	<ul id="box">
+		<li>데이터가 없습니다.</li>
+	</ul>
+	<br><br>
+	<input type="button" value="DOM" id="btn1">
+	<input type="button" value="NODE" id="btn2">
+
+</body>
+<script>
+	var bt1 = document.getElementById("btn1");
+	var bt2 = document.getElementById("btn2");
+	
+	bt1.onclick = function(){
+		var w = 0;
+		while(w < 5){
+			document.getElementById("box").innerHTML += "<li>"+w+"</li>";
+			w++;
+		}
+	}
+	bt2.onclick = function(){
+		var w = 0;
+		var html;
+		while(w < 5){
+			html= document.createElement("li");
+			//var html2 = document.createTextNode(w);
+			//html.append(html2);
+			html.innerHTML = "<span>"+w+"</span>";
+			document.getElementById("box").append(html);
+			w++;
+		}
+	}
+</script>
+</html>

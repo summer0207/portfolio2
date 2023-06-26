@@ -1,0 +1,66 @@
+create table corp(
+cidx int not null auto_increment,
+cname char(100) not null,
+cuse enum('Y','N') not null default 'Y',
+primary key(cidx),
+unique key(cname)
+);
+//A : 배송대기, B : 배송중, C : 배송완료, D : 배송취소, E : 배송분실
+
+create table co(
+didx int not null auto_increment,
+dse char(1) not null,
+dss char(50) not null,
+primary key(didx)
+);
+create table Status(
+sidx int not null auto_increment,
+scode char(1) not null,
+sname varchar(100) not null,
+primary key(sidx),
+unique key(scode)
+);
+
+create table delivery(
+didx int not null auto_increment,
+cidx char(2) not null,
+dno  char(15) not null,
+dto varchar(100) not null,
+dfrom varchar(100) not null,
+dproduct varchar(230) not null,
+day datetime not null default '0001-01-01 00:00:00',
+darea varchar(50) not null,
+scode char(1) not null,
+primary key(didx)
+);
+/*
+응용문제1.
+택배사(한글), 운송장번호, 보내는분
+
+응용문제2.
+택배사(한글), 운송장 번호, 배송상태(한글)
+
+응용문제3.
+배송상태가 배송대기 리스트만 출력 시킵니다.
+
+결과 운송장번호, 상품정보, 현재위치, 배송상태(한글)
+
+응용문제4
+ARGO 배송회사가 있습니다. 상호명이 변경되어 데이터를 수정합니다.
+(주)알고 변경하시오.
+성훈물류 배송회사는 더 이상 거래를 하지 않음 N 처리
+
+응용문제5
+송장번호 : 91378145226 -> 배송취소로 변경
+해당정보를 출력
+
+응용문제6
+송장번호가 77번호 끝나는 데이터 갯수는 몇개인가?
+결과코드는 count로 출력
+
+응용문제7
+상품명 중 여성이 들어가는 단어 상품 총 갯수를 모두 출력하시오
+select count(*) from delivery where dproduct like '%여성%';
+
+
+*/

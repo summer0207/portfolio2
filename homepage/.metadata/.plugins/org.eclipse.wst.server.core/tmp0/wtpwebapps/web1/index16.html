@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 중상급 grid 응용편</title>
+<style>
+/*응용문제 가로 450px 높이 100px  2분할 메뉴부분 300px 150px*/
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	.maincss{
+		width:450px;
+		height:auto;
+		display: grid;
+		justify-content: center;
+		align-content: center;
+		grid-template-rows: repeat(6,100px);
+		grid-template-columns:repeat(3,150px);
+		grid-template-areas:
+			"h h h"
+			"m m m"
+			"b b b"
+			"pl pl pr"
+			"ev ev re"
+			"cp cp cp"
+		;
+	}
+	.maincss > header {
+		grid-area: h;
+		background-color: skyblue;
+	}
+	.maincss > section:nth-of-type(1) {
+		grid-area: m;
+		background-color: orange;
+	}
+	.maincss > section:nth-of-type(2){
+		grid-area: b;
+		background-color: gray;
+	}
+	.maincss > article:nth-of-type(1) {
+		grid-area:pl;
+		background-color: pink;
+	}
+	.maincss > article:nth-of-type(2) {
+		grid-area:pr;
+		background-color: green;
+	}
+	.maincss > aside:nth-of-type(1){
+		grid-area:ev;
+		background-color: yellow;
+	}
+	.maincss > aside:nth-of-type(2){
+		grid-area:re;
+		background-color: yellow;
+	}
+	.maincss > footer{
+		grid-area:cp;
+		background-color: purple;
+	}
+</style>
+</head>
+<body>
+	<main class="maincss">
+		<header>상단</header>
+		<section>메뉴</section>
+		<section>배너</section>
+		<article>왼쪽상품</article>
+		<article>오른쪽상품</article>
+		<aside>이벤트</aside>
+		<aside>리뷰</aside>
+		<footer>카피라이터</footer>
+	</main>
+</body>
+</html>

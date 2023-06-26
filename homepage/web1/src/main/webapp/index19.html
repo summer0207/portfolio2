@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CGV TOP 10 순위</title>
+<style>
+	body{margin:0; padding:0;}
+	div{
+		text-align: center;
+	}
+	ul{
+	list-style: none; margin:0 auto; padding:0; 
+	display:flex; width: 1000px; height: 30px; 
+	justify-content:space-between; margin-top: 10px; 
+	position: relative; transition: all 1s ease;}
+	ul > li {height: inherit; border: 1px solid skyblue; width: 120px; font-size: 18px; border-radius: 5px; line-height: 30px; position: relative;}
+	ul > li:nth-of-type(2){width: 600px;}
+	ul:first-of-type > li {background-color: aliceblue; margin: 0; font-weight: bold;}
+</style>
+</head>
+<body>
+	<div id="base">
+		<h2>CGV TOP 10 순위</h2>
+		<p id="date"></p>
+		<ul>
+			<li>순위</li>
+			<li>영화제목</li>
+			<li>개봉일</li>
+			<li>누적 관객수</li>
+		</ul>
+	</div>
+</body>
+<script>
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function(){
+	if(xhr.readyState == XMLHttpRequest.DONE && xhr.status == 200){
+		ajax(JSON.parse(this.response));
+	}
+}
+xhr.open("GET","./data.json",true);
+xhr.send();
+
+function ajax(array){
+	console.log(array.boxOfficeResult);
+	var base = document.getElementById("base");
+	var date = document.getElementById("date");
+	date.innerText = array.boxOfficeResult.showRange;
+	array.boxOfficeResult.dailyBoxOfficeList.forEach((a,i,o)=>{
+		var ul = document.createElement("ul");
+		ul.setAttribute("onmouseenter","ani.enter(this)");
+		ul.setAttribute("onmouseleave","ani.leave(this)");
+		base.append(ul);
+		Object.keys(array.boxOfficeResult.dailyBoxOfficeList[i]).forEach((a1,i1,o1)=>{
+			if(a1 === "rank" || a1 === "movieNm" || a1 === "openDt" || a1 === "audiCnt"){
+				var li = document.createElement("li");
+					li.innerText = array.boxOfficeResult.dailyBoxOfficeList[i][a1];
+				if(a1 === "audiCnt"){ li.append(" 명");}
+				ul.append(li);
+			}
+		});
+	});
+}
+
+const ani = new abc();
+function abc(){
+	this.enter = function(a){
+		a.style.transform = "rotateX(180deg)";
+		setTimeout(this.timer(a,"olive","white","rotateX(180deg)"),500);
+	}
+	this.leave = function(a){
+		a.style.transform = "none";
+		setTimeout(this.timer(a,"","",""),500);
+	}
+	this.timer = function(a,bg,cl,rt){
+		var ea = a.children.length;
+		for(i=0;i<ea;i++){
+			a.children[i].style.transform = rt;
+			a.children[i].style.backgroundColor = bg;
+			a.children[i].style.color=cl;
+		}
+	}
+}
+</script>
+</html>

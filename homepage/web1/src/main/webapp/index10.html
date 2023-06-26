@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax POST,GET 3 - Backend와 연동</title>
+</head>
+<!-- userid 이름으로 get으로 보내시길 바랍니다. -->
+<script>
+function ajax() {
+	var id = document.getElementById("mid");
+	var http = new XMLHttpRequest();
+	http.onreadystatechange = function(){
+		if(http.readyState == XMLHttpRequest.DONE && http.status==200){
+			//console.log(this.response);
+			var result = this.response;
+			console.log(result);
+			
+			if(result=="yes"){
+				alert("사용가능한 아이디 입니다.");
+			}
+			else{
+				alert("사용 불가능한 아이디 입니다.");
+			}
+		}
+	}
+	//post 전송 send 안에 name값과 데이터값을 적용하여 전송
+	//setRequestHeader()에 content-type(enctype와 같음) 적용해야함
+	http.open("post","./index10.jsp",true);
+	http.setRequestHeader("content-type","application/x-www-form-urlencoded");
+	http.send("userid="+id.value);	//send = submit
+}
+</script>
+<body>
+<input type="text" id="mid">
+<input type="button" value="중복체크" onclick="ajax()">
+</body>
+</html>

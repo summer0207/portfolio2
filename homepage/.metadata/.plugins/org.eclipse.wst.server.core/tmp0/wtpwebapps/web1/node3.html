@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Javascript node 응용 1(공지사항)</title>
+</head>
+<style>
+	.notice{
+		width:500px;
+		height:40px;
+		border: 1px solid black;
+		border-radius: 40px;
+		display: flex;
+		flex-direction:row;
+		position: relative;
+		overflow: hidden;
+	}
+	.notice > a {
+		width:100px;
+		height:40px;
+		line-height: 40px;
+		margin-left: 10px;
+	}
+	.ulcss{
+		margin: 0; padding: 0;
+		list-style: none;
+		width:400px;
+		height:40px;
+		line-height: 40px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		position: relative;
+	}
+	.ulcss > li{
+		width: 400px;
+		height: 40px;
+	}
+	.btn{
+		width: 50px;
+		height: 20px;
+		background-color: black;
+		color: white;
+		margin-top: 10px;
+	}
+</style>
+<body>
+	<div class="notice">
+		<a>공지사항</a>
+		<ul class="ulcss" id="ulcss">
+			<li>[2023-05-01] 근로자의 날</li>
+			<li>[2023-05-05] 어린이날</li>
+			<li>[2023-05-27] 부처님 오신날</li>
+			<li>[2023-06-06] 현충일</li>
+		</ul>
+	</div>
+	<input type="button" value="▲" class="btn" onclick="no.upbtn()">
+	<input type="button" value="▼" class="btn" onclick="no.downbtn()">
+</body>
+<script>
+	var no = new notice();
+	function notice(){
+		var ulcss = document.getElementById("ulcss");
+		var copy;
+		var part;
+		var ck = false;
+		
+		this.upbtn = function(){
+			if(ck==false){
+				ck = true;
+				ulcss.style.transition = "transform 1s ease";
+				ulcss.style.transform = "translate(0,-40px)";
+				setTimeout(this.timer,1000);
+				part = "up";
+			}
+		}
+		this.downbtn = function(){
+			if(ck==false){
+				ck = true;
+				copy = ulcss.lastElementChild.cloneNode(true);
+				ulcss.style.top = "-40px";
+				ulcss.removeChild(ulcss.lastElementChild);
+				ulcss.insertBefore(copy,ulcss.firstElementChild);
+				ulcss.style.transition = "transform 1s ease";
+				ulcss.style.transform = "translate(0,40px)";
+				setTimeout(this.timer,1000);
+				part = "down"
+			}
+		}
+		this.timer = function(){
+			if(part=="up"){
+				copy = ulcss.firstElementChild.cloneNode(true);
+				ulcss.removeChild(ulcss.firstElementChild);
+				ulcss.append(copy);
+				ulcss.style= "";
+				ck = false;
+			}
+			else{
+				ulcss.style= "";
+				ck = false;
+			}
+		}
+	}
+</script>
+</html>

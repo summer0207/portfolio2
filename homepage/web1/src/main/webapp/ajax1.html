@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CORS - Ajax 활용편</title>
+<!-- 
+외부서버 json -> XMLHttprequest (x)
+ -->
+</head>
+<style>
+	.list{
+		width:1000px;
+		height: auto;
+		margin: 0 auto;
+	}
+	.list > p{
+		width:700px;
+		height:40px;
+		text-align: center;
+		line-height: 40px;
+		margin: 0 auto;
+	}
+	.ulcss{
+		list-style: none; margin: 0; padding: 0;
+		display: flex;
+		flex-direction:row;
+		justify-content: space-between;
+	}
+	.ulcss > li{
+		width:250px;
+		height:40px;
+		text-align: center;
+		line-height: 40px;
+	}
+</style>
+<body>
+	<div class="list" id="list">
+		<p>서울특별시 서대문구 인구수 조사결과 표</p>
+		<!--<ul class="ulcss">
+			<li>동명: 원흥동</li>
+			<li>총인구수: 2105</li>
+			<li>남성: 405</li>
+			<li>여성: 506</li>
+		</ul>-->
+	</div>
+</body> 
+<script>
+	function person(json){	//json 파일을 인수값으로 받아서 처리(키이름 = 함수명)
+		//console.log(json["data"].length);
+		var list = document.getElementById("list");
+		json["data"].forEach(function(a1,a2,a3){
+			//console.log(a1);
+			var ul = document.createElement("ul");
+			ul.className = "ulcss";
+			
+			var li = document.createElement("li");
+			li.innerHTML = "동명:"+a1.동명;
+			
+			var li2 = document.createElement("li");
+			var sum = a1.남 + a1.여;
+			li2.innerHTML = "총인구수:"+ sum;
+			
+			var li3 = document.createElement("li");
+			li3.innerHTML = "남성:" + a1.남;
+			
+			var li4 = document.createElement("li");
+			li4.innerHTML = "여성:" + a1.여;
+			
+			ul.append(li);
+			ul.append(li2);
+			ul.append(li3);
+			ul.append(li4);
+			list.append(ul);
+			
+		});
+			
+	}
+</script>
+<script src="http://summer0207.dothome.co.kr/db/response_acclist1.json?callback=person"></script>
+</html>

@@ -1,0 +1,75 @@
+@charset "UTF-8";
+.checkcss{
+	position: relative;
+}
+.checkcss:before{
+	content:"";
+	width:20px;
+	height:20px;
+	border:2px solid blue;
+	border-radius: 20px;	
+	position: absolute;
+	background-color: white;
+	top:-5px;
+	left:-5px
+}
+.checkcss:after{
+	content: "";
+	width:10px;
+	height:10px;
+	position: absolute;
+	left:3px;
+	top:-3px;
+	font-size: 15px;
+	color:blue;
+}
+.checkcss:checked:after{
+	content: "●";
+}
+
+.ulcss{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.ulcss > li{
+	float: left;
+	width:100px;
+	height:30px;
+	line-height: 30px;
+	text-align: center;
+	position: relative;
+}
+.ulcss > li:after{	/* after(오른쪽), before(왼쪽) */
+	content: "|";
+	position: absolute;
+	right: -3px;
+}
+.ulcss > li:last-of-type:after {
+	content: "";
+}
+.naver{
+	position: relative;
+}
+/* 
+	background-image,background-size등 사용 가능하며,
+	위치 조정하여 checkbox 또는 radio도 해당 이미지를 기준으로 
+	제작 가능합니다. 단, 해당 이미지 파일은 디자이너가 제작 또는 SVG파일이 있어야
+	적용 가능합니다.
+ */
+.naver:before{
+	content:"";
+	background-image:url("./m_chcek_off.png");
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	width:20px;
+	height:20px;
+	position: absolute;
+	left:-5px;
+	top:-5px;
+	background-color: white;
+}
+.naver:checked:before{
+	background-image:url("./m_chcek_on.png");
+}
+

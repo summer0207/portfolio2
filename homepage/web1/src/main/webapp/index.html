@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 복습 return</title>
+</head>
+<script src="index.js?v=2"></script>
+<script>
+	const data = ["홍길동","이순신","강감찬","유관순"];
+	
+	var ea = data_ea(data);	//리턴함수 호출
+	console.log(ea);	//리턴값을 출력
+	
+	function abc(n) {
+		//console.log(n); //꼭 확인해보고 진행
+		var dom = document.getElementById("box"+n);
+		var result = obj(dom,"background-color");
+		console.log(result);
+	}
+	
+</script>
+<style>
+.box0{
+width:100px; height:100px;
+background-color: blue;
+}
+.box1{
+width:100px; height:100px;
+background-color: orange;
+}
+.box2{
+width:100px; height:100px;
+background-color: green;
+}
+
+
+</style>
+<body>
+<!-- 
+return을 사용하는 사항은 주로 배열 데이터, 같은 오브젝트 효과, 산술연산
+선택문(switch)
+ -->
+ <!-- 오브젝트에는 name, value 속성을 사용하지 않음
+ 	input, textarea, select 등 태그에만 name, value 사용 -->
+ <div id="box0" class="box0" onclick="abc(0)"></div>
+ <div id="box1" class="box1" onclick="abc(1)"></div>
+ <div id="box2" class="box2" onclick="abc(2)"></div>
+ 
+</body>
+</html>

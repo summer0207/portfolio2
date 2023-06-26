@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 중상급 grid 사용법</title>
+<style>
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	/*
+	grid란 : 웹 페이지 레이아웃 전체를 빠르게 설정 및 적용하는 CSS 속성
+	display 우선순위
+	grid > flex > inline, inline-block > block
+	
+	grid 부가속성은 flex에서 사용하는 속성 모두 사용가능 (flex 상위버전)
+	*/
+	.maincss{
+		margin: 0 auto;
+		width:1200px;
+		height: auto;
+		display: grid;
+		justify-content: center;
+		align-content: center;
+		grid-template-rows: repeat(5,300px);	/* 가로줄(가로줄 갯수, 세로크기) */
+		grid-template-columns: repeat(3,400px);	/* 가상의 세로줄(세로줄 갯수, 가로크기) */
+		grid-template-areas:	/* 태그에 대한 별명 명칭을 구성지도 */
+			"h h h"
+			"b b n"		
+			"pl pr pr"
+			"ad ad ad"
+			"cp cp cp"
+		;
+	}
+	.maincss > header {
+		grid-area: h;
+		background-color: skyblue;
+	}
+	.maincss > section:nth-of-type(1) {
+		grid-area: b;
+		background-color: orange;
+	}
+	.maincss > section:nth-of-type(2){
+		grid-area: n;
+		background-color: gray;
+	}
+	.maincss > article:nth-of-type(1) {
+		grid-area:pl;
+		background-color: pink;
+	}
+	.maincss > article:nth-of-type(2) {
+		grid-area:pr;
+		background-color: green;
+	}
+	.maincss > aside{
+		grid-area:ad;
+		background-color: yellow;
+	}
+	.maincss > footer{
+		grid-area:cp;
+		background-color: purple;
+	}
+</style>
+</head>
+<body>
+<main class="maincss">
+<header>상단</header>
+<section>배너</section>
+<section>공지사항</section>
+<article>왼쪽상품</article>
+<article>오른쪽상품</article>
+<aside>광고파트</aside>
+<footer>카피라이터</footer>
+</main>
+</body>
+</html>

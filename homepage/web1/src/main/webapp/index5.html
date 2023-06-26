@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자바스크립트 return4</title>
+</head>
+<style>
+.box{width:100px; height:100px; background-color:blue;
+	transition:all 2s ease;
+	transition-delay: 2s;
+	
+}
+</style>
+<script>
+
+/*
+ return 값에 대한 조건이 있더라도 결과를 받으면 그 다음 라인을 실행 시켜 버림
+ style 속성에 효과를 적용시 (style.width, style.height) 무조건 같이 적용됨
+ 별도로 따로따로 적용하는 형태가 없습니다.
+ */
+
+function abc(){
+	var result;
+	var ob = document.getElementById("box");
+	result = effect(ob,"width","200px");
+	//console.log(result);
+	result = effect(ob,"height","300px");
+}
+
+//단순 애니메이션 효과 부분은 return으로 처리하여 사용하게 됩니다.
+//단점은 일반 스크립트 style 형태로는 각 개별로 효과는 적용 안됨
+function effect(ob,eff,size){
+	if(eff=="width"){
+		ob.style.width = size;
+	}
+	else if(eff=="height"){
+		ob.style.transitionDelay = "2s"
+		ob.style.height = size;
+	}
+	return true;
+}
+
+function ani(aa){
+	var ob1 = document.getElementById("ckbox");
+	return_ani(ob1,aa);
+}
+
+function return_ani(ob1,aa){
+	if(aa == true){
+	ob1.style.opacity = 1;
+	}
+	else{
+		ob1.style.opacity = 0;
+	}
+	return;
+}
+</script>
+<style>
+.ckbox{
+width:30px; height:30px; background-color:black;
+transition: all 3s ease; opacity: 0;}
+</style>
+<body>
+<div class="box" id="box" onclick="abc()"></div>
+<!-- 
+응용문제2.
+오브젝트 크기가 30 * 30 이 있습니다. 체크박스에 체크가 되었을 경우
+나타나게 하며, 체크박스에 체크 아웃 되었을 경우 서서히 사라지는 효과를
+만드시오. (오브젝트 색상은 검정)
+ -->
+ <div class="ckbox" id="ckbox"></div><br>
+ <input type="checkbox" onclick="ani(this.checked)">
+</body>
+</html>

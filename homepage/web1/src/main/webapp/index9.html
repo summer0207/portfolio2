@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ajax POST,GET 3 - Backend와 연동</title>
+</head>
+<!-- userid 이름으로 get으로 보내시길 바랍니다. -->
+<script>
+function ajax() {
+	var id = document.getElementById("mid");
+	var http = new XMLHttpRequest();
+	http.onreadystatechange = function(){
+		if(http.readyState == XMLHttpRequest.DONE && http.status==200){
+			console.log(this.response);
+			var result = this.response;
+			console.log(result);
+			if(result=="yes"){
+				alert("사용가능한 아이디 입니다.");
+			}
+			else{
+				alert("사용 불가능한 아이디 입니다.");
+			}
+		}
+	}
+	//get 전송은 파일명 뒤에 ?를 시작으로 파라미터 값으로 전송함
+	http.open("get","./index9.jsp?userid="+id.value,true);
+	http.send();
+}
+</script>
+<body>
+<input type="text" id="mid"><input type="button" value="중복체크" onclick="ajax()">
+</body>
+</html>

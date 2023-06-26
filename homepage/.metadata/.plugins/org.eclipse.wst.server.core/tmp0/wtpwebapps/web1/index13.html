@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS - 중상급 flex</title>
+<style>
+	/* flex란 부모에게 자식 오브젝트 정렬방식을 적용시키는 형태의 속성 */
+	.header{
+		width:500px;
+		height:40px;
+		border:1px solid red;
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row; /* 가로정렬  기본값 */
+		/*flex-direction: column;*/ /* 세로 */
+	}
+	.header > span{
+		display: block;
+		height:40px;
+	}
+	.header > span:nth-of-type(1) {
+		width:40px;
+		background-color: orange;
+		margin-left:5px;
+	}
+	.header > span:nth-of-type(2) {
+		width: 200px;
+		background-color: blue;
+	}
+	.header > span:nth-of-type(3) {
+		width: 40px;
+		background-color: gray;
+		margin-right:5px;
+	}
+	/*
+	justify-content : 가로정렬
+		- flex-start : 왼쪽 정렬
+		- flex-end : 오른쪽 정렬
+		- center : 가운데 정렬
+		- space-between : 자식 오브젝트 사이에 균일한 간격으로 정렬 (좌,우 부모 오브젝트 공간없이 정렬)
+		- space-around : 자식 오브젝트 기준으로 왼쪽, 오른쪽 동일한 간격으로 정렬
+		- space-evenly : 자식 오브젝트 동일한 간격으로 정렬
+		
+	align-items : 세로정렬
+		- start : 왼쪽
+		- end : 오른쪽
+		- center : 가운데 정렬
+	*/
+	.box{
+		width: 300px;
+		height: 300px;
+		border : 1px solid red;
+		display: flex;
+		justify-content: center;	/* 가로축 */
+		align-items: center;	/* 세로축 */
+	}
+	.box > span{
+		display: block;
+		width: 50px;
+		height: 50px;
+		background-color: orange;
+	}
+	.box2{
+		width:300px;
+		height:auto;	/* 자식 오브젝트 margin 또는 top을 사용해야함(align-content,align-items사용불가) */
+		border:1px solid red;
+		display: flex;
+		justify-content: space-evenly;
+		/*align-content: space-evenly;*/
+		/*
+		부모 높이가 auto일 경우는 사용하지 못함
+		align-content : space를 사용할 수 있음
+		align-items : space가 없음 
+		*/
+		
+		/*
+		flex-direction: column;
+		flex-wrap: column wrap;
+		*/
+		/* flex-direction: row-reverse; */ /* 거꾸로 정렬 */
+		flex-flow: row wrap;
+		box-sizing: border-box;
+	}
+	/*
+	nowrap : 부모 크기와 상관없이 무조건 정렬함
+	wrap : 부모 크기가 자식 크기에 맞지 않을 경우 아래로 내려감
+	
+	flex-wrap : flex-direction을 사용하여 오브젝트 각각의 정렬형태 (부모기준 사이즈)
+	flex-flow : direction+wrap를 공용으로 사용하여 정렬을 하게 됨
+	*/
+	.box2 > span{
+		display: block;
+		width: 100px;
+		height: 100px;
+		background-color: yellowgreen;		
+		border: 1px solid black;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+</style>
+</head>
+<body>
+	<div class="header">
+		<span></span>
+		<span></span>
+		<span></span>
+	</div>
+	<br><br>
+	<div class="box">
+		<span></span>
+	</div>
+	<br><br>
+	<div class="box2">
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+		<span>5</span>
+		<span>6</span>
+	</div>
+</body>
+</html>

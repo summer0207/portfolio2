@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 3D + Javascript (High)3</title>
+</head>
+<style>
+/*  
+2D : X, Y축
+scale
+transform
+
+3D : X, Y, Z축
+scale3d
+perspective : 3차원 형태의 오브젝트를 제작할 때 사용합니다.
+transform-style : perserve-3d(Z축을 사용하기 위한 속성값)
+backface-visibility : 오브젝트가 서로 겹쳐져 있을 때 뒷쪽에서 앞면이 보이게 할것을 정할때 사용하는 속성값(visible)
+*/
+	.divcss{
+		width:200px;
+		border: 1px solid black;
+		margin: 0 auto;
+		perspective: 200px;
+	}
+	.divcss:hover .btns{
+		transform: rotateY(180deg);
+	}
+	.btns{
+		display: block;
+		width: inherit;
+		height: 50px;
+		position: relative;
+		transition: all 0.5s ease;
+		transform-style:preserve-3d;
+	}
+	.btns > label{
+		position: absolute;
+		width: inherit;
+		height: inherit;
+		line-height: 50px;
+		text-align: center;
+		display: block;
+		font-size: 13px;
+	}
+	.btn_off{
+		background-color: white;
+		color: black; 
+	}
+	.btn_on{
+		transform: rotateY(180deg);	/* 글자가 뒤집힌 상황이라서 정상적으로 보이도록 함 */
+		background-color: black;
+		color: white;
+	}
+	.views{
+		backface-visibility: hidden;
+	}
+</style>
+<body>
+	<div class="divcss">
+		<span class="btns">
+			<label class="btn_off views">예약하기</label>
+			<label class="btn_on views" onclick="btns.gopage()">예약하기</label>
+		</span>
+	</div>
+</body>
+<script>
+	var btns = new abc();
+	
+	function abc() {
+		this.gopage = function() {
+			location.href = "http://naver.com"
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS 중상급 flex 응용편</title>
+<style>
+	.box{
+		width:800px;
+		height:40px;
+		border: 1px solid black;
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.box > span{
+		display: block;
+		width:40px;
+		height:40px;
+		background-color: black;
+		color: white;
+		line-height: 40px;
+		text-align: center;
+		margin-right: 20px;
+	}
+	.box > span:nth-of-type(2) {
+		margin-right: auto; 
+		/* 
+		auto를 사용하는 경우는 부모 폭 만큼 띄울때 사용
+		단, 부모가 flex로 설정 되어 있을 경우 
+		*/
+	}
+	.box > span:last-of-type {
+		margin-right: 0;
+	}
+</style>
+</head>
+<body>
+	<div class="box">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span>5</span>
+			<span>6</span>
+	</div>
+</body>
+</html>
